@@ -11,13 +11,19 @@ function PeopleController($http) {
     $http.get('/people').then(function(response){
       console.log('response', response);
       controller.people = response.data;
+      console.log('People:', controller.people)
     }, function(error){
       console.log('error making request', error);
     });
   };
 
   controller.addPerson = function() {
-    var data = {name: controller.name};
+    var data = {
+      name: controller.name,
+      hometown: controller.hometown,
+      favoriteMovie: controller.movie
+    };
+    console.log('data', data);
 
     $http.post('/people', data).then(function(response){
       console.log('response', response);
